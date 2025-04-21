@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Earth Explorer</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
@@ -21,47 +21,80 @@
   </header>
 
   <main>
-    <!-- New Feature Form Section for Random Continent -->
     <section id="explore">
-      <h2>Plan Your Vacation</h2>
-      <form id="vacation-form">
-        <label for="name">Your Name:</label>
-        <input type="text" id="name" name="name" required>
+      <h2>Plan Your Vacation & Claim a Discount</h2>
+      <div class="form-container">
+        <form id="vacation-form">
+          <label for="name">Your Name:</label>
+          <input type="text" id="name" name="name" required />
 
-        <label for="activity">What activity do you like?</label>
-        <input type="text" id="activity" name="activity" required>
+          <label for="activity">What activity do you like?</label>
+          <input type="text" id="activity" name="activity" required />
 
-        <button type="submit">Generate Your Random Vacation</button>
-      </form>
+          <button type="submit">Generate Your Random Vacation</button>
+        </form>
 
+        <form id="discount-form">
+          <label for="discount-name">Your Name:</label>
+          <input type="text" id="discount-name" name="discount-name" required />
+
+          <label for="email">Your Email:</label>
+          <input type="email" id="email" name="email" required />
+
+          <button type="submit">Register for Discount</button>
+          <div id="discount-code"></div>
+        </form>
+      </div>
       <div id="vacation-result"></div>
     </section>
 
-    <!-- Continents Section -->
     <section id="continents">
       <h2>Continents</h2>
-      <p>Learn about the Earth's continents.</p>
-      <ul>
-        <li>Africa</li>
-        <li>Asia</li>
-        <li>Europe</li>
-        <li>North America</li>
-        <li>South America</li>
-        <li>Oceania</li>
-        <li>Antarctica</li>
-      </ul>
+      <p>Hover to learn more about each continent.</p>
+      <div class="continent-grid">
+        <div class="continent-box" data-name="Africa"></div>
+        <div class="continent-box" data-name="Asia"></div>
+        <div class="continent-box" data-name="Europe"></div>
+        <div class="continent-box" data-name="North America"></div>
+        <div class="continent-box" data-name="South America"></div>
+        <div class="continent-box" data-name="Oceania"></div>
+        <div class="continent-box" data-name="Antarctica"></div>
+      </div>
     </section>
 
-    <!-- Display API Data -->
-    <section id="api-results">
-      <h2>Explore More About the Continent</h2>
-      <div id="continent-info"></div>
-      <div id="countries-list"></div>
+    <section id="oceans">
+      <h2>Water Bodies</h2>
+      <div class="water-body-grid">
+        <div class="water-box">
+          <h3>Pacific Ocean</h3>
+          <p>The largest and deepest ocean on Earth.</p>
+        </div>
+        <div class="water-box">
+          <h3>Atlantic Ocean</h3>
+          <p>Second-largest ocean, separating the Americas from Europe and Africa.</p>
+        </div>
+        <div class="water-box">
+          <h3>Indian Ocean</h3>
+          <p>Known for its warmth and important shipping routes.</p>
+        </div>
+        <div class="water-box">
+          <h3>Southern Ocean</h3>
+          <p>Encircles Antarctica and is known for powerful currents.</p>
+        </div>
+        <div class="water-box">
+          <h3>Arctic Ocean</h3>
+          <p>Smallest and shallowest ocean, located around the North Pole.</p>
+        </div>
+        <div class="water-box">
+          <h3>Mediterranean Sea</h3>
+          <p>Connected to the Atlantic Ocean, surrounded by Europe, Asia, and Africa.</p>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>Made with 🌍 by [Your Name]</p>
+    <p>Made by Adelekan Adesuyi</p>
   </footer>
 
   <script src="script.js"></script>

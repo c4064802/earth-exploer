@@ -1,4 +1,4 @@
-// Continents with fun vacation spots
+// Updated JavaScript
 const continents = {
   Africa: ["Safari in Kenya", "Beach in Zanzibar", "Explore the Pyramids in Egypt"],
   Asia: ["Relax in Bali", "Visit the Great Wall of China", "Tour Tokyo, Japan"],
@@ -9,18 +9,15 @@ const continents = {
   Antarctica: ["Cruise to Antarctica", "Visit scientific research stations", "See the penguins"]
 };
 
-// Event listener for the form submission
-document.querySelector('#vacation-form').addEventListener('submit', function (e) {
+// Vacation form submission
+const vacationForm = document.querySelector('#vacation-form');
+vacationForm.addEventListener('submit', function (e) {
   e.preventDefault();
-
   const name = document.querySelector('#name').value;
   const activity = document.querySelector('#activity').value;
-
-  // Generate random continent
   const continentKeys = Object.keys(continents);
   const randomContinent = continentKeys[Math.floor(Math.random() * continentKeys.length)];
 
-  // Prepare the result text for pop-up
   const resultText = `
     <h3>Hey ${name}, how about a vacation in ${randomContinent}?</h3>
     <p>Here's a list of fun activities you can do:</p>
@@ -29,43 +26,46 @@ document.querySelector('#vacation-form').addEventListener('submit', function (e)
     </ul>
   `;
 
-  // Display results in a pop-up
-  alert(resultText);
-
-  // Display result on the page
-  const vacationResultDiv = document.querySelector('#vacation-result');
-  vacationResultDiv.innerHTML = resultText;
-
-  // Fetch continent details from API (REST Countries API for countries in the continent)
+  document.querySelector('#vacation-result').innerHTML = resultText;
   fetchContinentCountries(randomContinent);
 });
 
-// Function to fetch countries in the continent from the REST Countries API
 function fetchContinentCountries(continent) {
-  const continentName = continent.replace(/ /g, '_');  // Prepare the continent for API use (replace spaces with underscores)
-  const apiUrl = `https://restcountries.com/v3.1/region/${continentName.toLowerCase()}`;
-
+  const apiUrl = `https://restcountries.com/v3.1/region/${continent.toLowerCase()}`;
   fetch(apiUrl)
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => {
-      displayCountryList(data);
+      const countryNames = data.map(c => `<li>${c.name.common}</li>`).join('');
+      document.querySelector('#vacation-result').innerHTML += `<h3>Countries in this continent:</h3><ul>${countryNames}</ul>`;
     })
-    .catch(error => {
-      console.error('Error fetching country data:', error);
-    });
+    .catch(err => console.error('API error:', err));
 }
 
-// Function to display the list of countries in the selected continent
-function displayCountryList(countries) {
-  const countriesListDiv = document.querySelector('#countries-list');
-  const countryNames = countries.map(country => country.name.common).join(', ');
+// Discount registration form
+document.querySelector('#discount-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const name = document.querySelector('#discount-name').value.trim();
+  const email = document.querySelector('#email').value.trim();
 
-  const countriesHTML = `
-    <h3>Countries in this continent:</h3>
-    <ul>
-      ${countries.map(country => `<li>${country.name.common}</li>`).join('')}
-    </ul>
-  `;
+  if (name && email) {
+    const code = 'DISC-' + name.toUpperCase().slice(0, 3) + '-' + Math.floor(Math.random() * 10000);
+    document.querySelector('#discount-code').innerHTML = `<p>Your discount code is: <strong>${code}</strong></p>`;
+  }
+});
 
-  countriesListDiv.innerHTML = countriesHTML;
-}
+// Add hover text for continent boxes
+const continentDescriptions = {
+  "Africa": "Rich in wildlife, deserts, and vibrant cultures.",
+  "Asia": "The largest continent with diverse landscapes.",
+  "Europe": "Known for history, culture, and architecture.",
+  "North America": "Home to a variety of climates and landscapes.",
+  "South America": "Famous for rainforests, mountains, and beaches.",
+  "Oceania": "Comprised of Australia, New Zealand, and Pacific islands.",
+  "Antarctica": "The coldest, driest, and windiest continent."
+};
+
+document.querySelectorAll('.continent-box').forEach(box => {
+  const name = box.dataset.name;
+  box.style.backgroundImage = `url('images/${name.toLowerCase().replace(/ /g, '_')}.jpg')`;
+  box.innerHTML = `<h3>${name}</h3><div class="info">${continentDescriptions[name]}</div>`;
+});
