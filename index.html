@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Earth Explorer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Earth Explorer</h1>
+    <nav>
+      <ul>
+        <li><a href="#continents">Continents</a></li>
+        <li><a href="#mountains">Mountains</a></li>
+        <li><a href="#oceans">Water Bodies</a></li>
+        <li><a href="#explore">Explore</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- New Feature Form Section for Random Continent -->
+    <section id="explore">
+      <h2>Plan Your Vacation</h2>
+      <form id="vacation-form">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="activity">What activity do you like?</label>
+        <input type="text" id="activity" name="activity" required>
+
+        <button type="submit">Generate Your Random Vacation</button>
+      </form>
+
+      <div id="vacation-result"></div>
+    </section>
+
+    <!-- Continents Section -->
+    <section id="continents">
+      <h2>Continents</h2>
+      <p>Learn about the Earth's continents.</p>
+      <ul>
+        <li>Africa</li>
+        <li>Asia</li>
+        <li>Europe</li>
+        <li>North America</li>
+        <li>South America</li>
+        <li>Oceania</li>
+        <li>Antarctica</li>
+      </ul>
+    </section>
+
+    <!-- Display API Data -->
+    <section id="api-results">
+      <h2>Explore More About the Continent</h2>
+      <div id="continent-info"></div>
+      <div id="countries-list"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Made with 🌍 by [Your Name]</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
